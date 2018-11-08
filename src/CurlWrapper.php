@@ -6,6 +6,11 @@ class CurlWrapper implements CurlWrapperInterface
 {
     private $ch;
 
+    public static function create(string $url = null)
+    {
+        return new self($url);
+    }
+
     public function __construct(string $url = null)
     {
         $this->ch = curl_init($url);
@@ -16,7 +21,9 @@ class CurlWrapper implements CurlWrapperInterface
 
     public function __destruct()
     {
-        curl_close($this->ch);
+        if (is_resource($this->ch)) {
+            curl_close($this->ch);
+        }
     }
 
     public function setOption($key, $value)
@@ -52,5 +59,15 @@ class CurlWrapper implements CurlWrapperInterface
     public function errno()
     {
         return curl_errno($this->ch);
+    }
+
+    public function handle()
+    {
+        return $this->ch;
+    }
+
+    public function close()
+    {
+        return curl_close($this->ch);
     }
 }

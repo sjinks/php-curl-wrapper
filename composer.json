@@ -1,6 +1,5 @@
 {
     "name": "wildwolf/curl-wrapper",
-    "version": "1.0.0",
     "license": "MIT",
     "authors": [
         {
@@ -16,6 +15,6 @@
     },
     "require": {
         "php": ">=7.0.0",
-        "ext-curl": "^7.0"
+        "ext-curl": "*"
     }
 }
